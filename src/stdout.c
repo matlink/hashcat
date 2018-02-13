@@ -61,6 +61,9 @@ int process_stdout (hashcat_ctx_t *hashcat_ctx, hc_device_param_t *device_param,
 
   out_t out;
 
+  u32 nbgen = 0;
+  u32 sample = user_options->sample;
+
   out.fp = stdout;
 
   char *filename = outfile_ctx->filename;
@@ -194,6 +197,8 @@ int process_stdout (hashcat_ctx_t *hashcat_ctx, hc_device_param_t *device_param,
     {
       for (u32 il_pos = 0; il_pos < il_cnt; il_pos++)
       {
+        if(nbgen++%sample!=0) continue;
+        nbgen -= sample;
         u64 l_off = device_param->kernel_params_mp_l_buf64[3] + gidvid;
         u64 r_off = device_param->kernel_params_mp_r_buf64[3] + il_pos;
 

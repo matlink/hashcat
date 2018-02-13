@@ -90,6 +90,7 @@ static const struct option long_options[] =
   {"rule-right",                required_argument, NULL, IDX_RULE_BUF_R},
   {"rules-file",                required_argument, NULL, IDX_RP_FILE},
   {"runtime",                   required_argument, NULL, IDX_RUNTIME},
+  {"sample",                    required_argument, NULL, IDX_SAMPLE},
   {"scrypt-tmto",               required_argument, NULL, IDX_SCRYPT_TMTO},
   {"self-test-disable",         no_argument,       NULL, IDX_SELF_TEST_DISABLE},
   {"segment-size",              required_argument, NULL, IDX_SEGMENT_SIZE},
@@ -197,6 +198,7 @@ int user_options_init (hashcat_ctx_t *hashcat_ctx)
   user_options->rule_buf_l                = RULE_BUF_L;
   user_options->rule_buf_r                = RULE_BUF_R;
   user_options->runtime                   = RUNTIME;
+  user_options->sample                    = SAMPLE;
   user_options->scrypt_tmto               = SCRYPT_TMTO;
   user_options->self_test_disable         = SELF_TEST_DISABLE;
   user_options->segment_size              = SEGMENT_SIZE;
@@ -259,6 +261,7 @@ int user_options_getopt (hashcat_ctx_t *hashcat_ctx, int argc, char **argv)
       case IDX_STATUS_TIMER:
       case IDX_HASH_MODE:
       case IDX_RUNTIME:
+      case IDX_SAMPLE:
       case IDX_ATTACK_MODE:
       case IDX_RP_GEN:
       case IDX_RP_GEN_FUNC_MIN:
@@ -352,6 +355,7 @@ int user_options_getopt (hashcat_ctx_t *hashcat_ctx, int argc, char **argv)
                                          user_options->hash_mode_chgd            = true;                            break;
       case IDX_RUNTIME:                  user_options->runtime                   = hc_strtoul (optarg, NULL, 10);
                                          user_options->runtime_chgd              = true;                            break;
+      case IDX_SAMPLE:                   user_options->sample                    = hc_strtoul (optarg, NULL, 10);   break;
       case IDX_ATTACK_MODE:              user_options->attack_mode               = hc_strtoul (optarg, NULL, 10);
                                          user_options->attack_mode_chgd          = true;                            break;
       case IDX_RP_FILE:                  user_options->rp_files[user_options->rp_files_cnt++] = optarg;             break;
@@ -2284,6 +2288,7 @@ void user_options_logger (hashcat_ctx_t *hashcat_ctx)
   logfile_top_uint   (user_options->rp_gen_func_min);
   logfile_top_uint   (user_options->rp_gen_seed);
   logfile_top_uint   (user_options->runtime);
+  logfile_top_uint   (user_options->sample);
   logfile_top_uint   (user_options->scrypt_tmto);
   logfile_top_uint   (user_options->segment_size);
   logfile_top_uint   (user_options->self_test_disable);

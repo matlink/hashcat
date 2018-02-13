@@ -555,6 +555,7 @@ typedef enum user_options_defaults
   RP_GEN_FUNC_MIN          = 1,
   RP_GEN_SEED              = 0,
   RUNTIME                  = 0,
+  SAMPLE                   = 1,
   SCRYPT_TMTO              = 0,
   SELF_TEST_DISABLE        = false,
   SEGMENT_SIZE             = 33554432,
@@ -663,6 +664,7 @@ typedef enum user_options_map
   IDX_USERNAME                 = 0xff3c,
   IDX_VERACRYPT_KEYFILES       = 0xff3d,
   IDX_VERACRYPT_PIM            = 0xff3e,
+  IDX_SAMPLE                   = 0xff3f,
   IDX_VERSION_LOWER            = 'v',
   IDX_VERSION                  = 'V',
   IDX_WORKLOAD_PROFILE         = 'w'
@@ -1597,6 +1599,7 @@ typedef struct user_options
   u32          rp_gen_func_min;
   u32          rp_gen_seed;
   u32          runtime;
+  u32          sample;
   u32          scrypt_tmto;
   u32          segment_size;
   u32          status_timer;
