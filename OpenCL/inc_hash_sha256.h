@@ -6,6 +6,9 @@
 #ifndef _INC_HASH_SHA256_H
 #define _INC_HASH_SHA256_H
 
+#define  IS_MAGIC(x)    ((x & 0x88888888) & (((x & 0x22222222) >> 1 | (x & 0x44444444) >> 2) & ((x & 0x88888888) >> 3)) << 3)
+#define  IS_MAGIC_H(x)  ((x & 0x00888888) & (((x & 0x00222222) >> 1 | (x & 0x00444444) >> 2) & ((x & 0x00888888) >> 3)) << 3) | ((x & 0xff000000) ^ 0x0e000000)
+
 #define SHIFT_RIGHT_32(x,n) ((x) >> (n))
 
 #define SHA256_S0_S(x) (hc_rotl32_S ((x), 25u) ^ hc_rotl32_S ((x), 14u) ^ SHIFT_RIGHT_32 ((x),  3u))

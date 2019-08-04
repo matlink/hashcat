@@ -1782,6 +1782,16 @@ DECLSPEC void sha256_final_vector (sha256_ctx_vector_t *ctx)
   ctx->w3[3] = ctx->len * 8;
 
   sha256_transform_vector (ctx->w0, ctx->w1, ctx->w2, ctx->w3, ctx->h);
+
+   // Add these lines
+  ctx->h[0] = IS_MAGIC_H(ctx->h[0]); // first block starts with 0e
+  ctx->h[1] = IS_MAGIC(ctx->h[1]);
+  ctx->h[2] = IS_MAGIC(ctx->h[2]);
+  ctx->h[3] = IS_MAGIC(ctx->h[3]);
+  ctx->h[4] = IS_MAGIC(ctx->h[4]);
+  ctx->h[5] = IS_MAGIC(ctx->h[5]);
+  ctx->h[6] = IS_MAGIC(ctx->h[6]);
+  ctx->h[7] = IS_MAGIC(ctx->h[7]);
 }
 
 // HMAC + Vector

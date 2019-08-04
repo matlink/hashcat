@@ -127,11 +127,18 @@ KERNEL_FQ void m01400_sxx (KERN_ATTR_VECTOR ())
 
     sha256_final_vector (&ctx);
 
-    const u32x r0 = ctx.h[DGST_R0];
-    const u32x r1 = ctx.h[DGST_R1];
-    const u32x r2 = ctx.h[DGST_R2];
-    const u32x r3 = ctx.h[DGST_R3];
+    const u32x r0 = ctx.h[0];
+    const u32x r1 = ctx.h[1];
+    const u32x r2 = ctx.h[2];
+    const u32x r3 = ctx.h[3];
+    const u32x r4 = ctx.h[4];
+    const u32x r5 = ctx.h[5];
+    const u32x r6 = ctx.h[6];
+    const u32x r7 = ctx.h[7];
 
-    COMPARE_S_SIMD (r0, r1, r2, r3);
+    // this is one hacky solution
+    if ((r4 == 0) && (r5 == 0) && (r6 == 0) && (r7 == 0)) {
+       COMPARE_S_SIMD (r0, r1, r2, r3);
+    }
   }
 }
